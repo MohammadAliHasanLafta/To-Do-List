@@ -1,15 +1,40 @@
 <template>
-    <body class="bg-orange-200 flex justify-center items-center h-screen">
-    <div class="container w-full max-w-2xl" id="app">
-        <Todo/>
-        <div class="bg-gray-100 mt-5 p-10 rounded-xl shadow-lg text-gray-700">
-            <h1 class="font-bold text-xl italic block mb-0 leading-none">Todo's</h1>
-            <small id="todo_stats" class="block mb-5 mt-0 text-xs text-gray-500">1 Todos pending, 0 Completed.</small>
-            <div class="max-h-80 overflow-y-auto">
-                <Todotable />
-            </div>  
+    <main>
+        <h1>To Do List</h1>
+        <p>2 complate, 0 undone</p>
+
+        <div>
+            <input type="text" 
+            v-model="newTask" 
+            placeholder="Enter task..." 
+            @keypress.enter="addTask" />
         </div>
-        <Addtodo />
-    </div>
-</body>
+        <button @click="addTask">Add</button>
+
+        <div>
+
+        </div>
+    </main>
 </template>
+
+<script>
+import { useTodoStore } from "../stores/todos"
+export default {
+    data (){
+        return {
+            newTask : '',
+            c : useTodoStore()
+        }
+    },
+    methods: {
+        addTask() {
+            if (this.newTask) {
+                this.newTask = '';
+            }
+        }
+    },
+    mounted() {
+      console.log(this.c.tasks);
+    },
+}
+</script>
