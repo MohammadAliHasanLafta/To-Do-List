@@ -17,3 +17,4 @@ export const useTodoStore = defineStore(
       },
     },
   })
+  //pinia added
