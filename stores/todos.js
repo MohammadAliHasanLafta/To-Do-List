@@ -6,11 +6,14 @@ export const useTodoStore = defineStore(
     }),
     actions: {
       // since we rely on `this`, we cannot use an arrow function
-      increment() {
-        this.count++
+      add_task(task , d) {
+        this.tasks.unshift({ content: task, done: false, date: d.toDateString()});
       },
-      randomizeCounter() {
-        this.count = Math.round(100 * Math.random())
+      remove_task(task) {
+        this.tasks.splice(this.tasks.indexOf(task), 1);
+      },
+      toggle_task(task) {
+        task.done = !task.done;
       },
     },
   })
