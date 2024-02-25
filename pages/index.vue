@@ -1,14 +1,16 @@
 <template>
     <main class="bg-orange-200 flex justify-center flex-col items-center h-screen">
         <div class="container w-full max-w-2xl">
-            <h1 class="text-3xl text-center font-bold mb-3 uppercase">To Do List</h1>
+            <h1 class="text-3xl text-center font-bold mb-5 uppercase">To Do List</h1>
 
             <div class="bg-gray-100 mt-5 p-5 rounded-xl shadow-lg text-gray-700">
                 <h1 class="font-bold text-xl italic block mb-0 leading-none">Todo's</h1>
-                <small id="todo_stats" class="block mb-5 mt-0 text-xs text-gray-500">{{ remaining }} Todos pending, {{ completed }} Completed.</small>
-                <Task />
+                <small class="block mb-5 mt-0 text-xs text-gray-500">{{ remaining }} Todos pending, {{ completed }} Completed.</small>
+                <div class="h-80 overflow-y-auto w-full">
+                    <Task />
+                </div>
             </div>
-            <div class="flex justify-center mt-4">
+            <div class="flex justify-center mt-20">
                 <div>
                     <input type="text" 
                     v-model="newTask" 
