@@ -9,7 +9,7 @@
 
             <div class="text-xl px-1 py-2 text-orange-800">{{ task.content }}
                 <div class="float-right">
-                    <button v-if="!task.done" class="mr-5 hover:bg-white hover:rounded-xl" @click="toggledone(task)">
+                    <button class="mr-5 hover:bg-white hover:rounded-xl" @click="toggledone(task)">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                         class="h-6 w-6" 
                         fill="none" 
@@ -17,11 +17,6 @@
                         stroke="currentColor" 
                         stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                    </button>
-                    <button v-if="task.done" class="mr-5 hover:bg-white hover:rounded-xl" @click="toggledone(task)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                     <button class="hover:bg-white hover:rounded-xl " @click="removetask(task)">
@@ -36,6 +31,11 @@
                             d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                     </button>
+                    <button class="mr-5 ml-5 hover:bg-white hover:rounded-xl " @click="addtobacklog(task)">
+                        <svg class="w-[24px] h-[24px] text-orange-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v5m0 0 2-2m-2 2-2-2M3 6v1c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V6c0-.6-.4-1-1-1H4a1 1 0 0 0-1 1Zm2 2v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V8H5Z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
             <small class="block text-base text-gray-500">{{ task.date }}</small>
@@ -46,7 +46,6 @@
 
 <script>
 export default {
-    //{{ task.done ? '❌' : '✔️' }}
     data (){
         return {
             todo : useTodoStore(),
@@ -55,14 +54,14 @@ export default {
     methods: {
         toggledone(task){
             this.todo.toggle_task(task);
+            this.todo.add_donetask(task);
         },
         removetask(task){
             this.todo.remove_task(task);
         },
+        addtobacklog(task){
+            this.todo.add_backlog(task);
+        }
     },
 }
 </script>
-
-<style>
-
-</style>
